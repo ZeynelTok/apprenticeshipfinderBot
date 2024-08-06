@@ -43,6 +43,7 @@ def get_channel_details(ctx):
     if not channel:
         print(f"Channel ID {channel_id} not found in server '{ctx.guild.name}'")
         return
+    return channel
     
 @bot.command()
 @commands.has_permissions(administrator=True)
@@ -58,12 +59,13 @@ async def setchannel(ctx, channel: discord.TextChannel):
 async def post_new_apprenticeships(channel):
     """Check for new apprenticeships and post them to the Discord channel."""
     new_listings = find_new_apprenticeships()
-
-    if new_listings:
-        for title, company, location, training, salary, posted, expires, full_link in new_listings:
-            await channel.send(f"**New Apprenticeship Found:**\n\n**{title} at {company}**\n{location}\n**Qualification:** {training}\n**Annual Wage:** {salary}\n\n**Posted:** {posted}\n**Closes:** {expires}\n{full_link}")
-    else:
+    if not new_listings:
         await channel.send('No new apprenticeships found right now.')
+        return
+
+    for title, company, location, training, salary, posted, expires, full_link in new_listings:
+        await channel.send(f"**New Apprenticeship Found:**\n\n**{title} at {company}**\n{location}\n**Qualification:** {training}\n**Annual Wage:** {salary}\n\n**Posted:** {posted}\n**Closes:** {expires}\n{full_link}")
+
 
 @bot.event
 async def on_ready():
