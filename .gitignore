@@ -1,4 +1,34 @@
-/.env
-/config.json
-/posted_apprenticeships.json
-/__pycache__
+# Ignore environment variable files
+.env
+
+# Ignore Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Ignore config and data files that should not be shared
+config.json
+posted_apprenticeships.json
+
+# Include example config files, but ignore actual config files
+# (users should copy the example files and modify them)
+!config.example.json
+
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore other potentially sensitive or large files
+*.log
+*.sqlite3
+
+# Ignore temporary files created by text editors/IDEs
+*.swp
+*.swo
+*.bak
+*.tmp
+.idea/
+.vscode/
