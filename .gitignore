@@ -1,0 +1,4 @@
+/.env
+/config.json
+/posted_apprenticeships.json
+/__pycache__
